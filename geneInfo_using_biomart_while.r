@@ -8,17 +8,18 @@ gene_id <- as.matrix(gene_id)
 geneInfo = data.frame() #creat an empty dataframe
 #the followinf while loop to handel the gene_id arry 500 by 500 (500 based on the advise on ensmble website beacuse whene we call the getBM function by the whole gene_id array we will miss some values)
 finished = FALSE
+limit = 500
 k=0
 while(!finished)
 {
-	if((length(gene_id)-(k*500))>500)
+	if((length(gene_id)-(k*limit))>limit)
 	{
-		gene_id_tmp = gene_id[c((500*k+1):(500*(k+1)))]
+		gene_id_tmp = gene_id[c((limit*k+1):(limit*(k+1)))]
 		k=k+1
 	}
 	else
 	{
-		gene_id_tmp = gene_id[c((500*k+1):length(gene_id))]
+		gene_id_tmp = gene_id[c((limit*k+1):length(gene_id))]
 		finished = TRUE
 	}
 	geneInfo <- rbind(geneInfo,getBM(attributes = attributes, filters = filter, values = gene_id_tmp, mart = ensembl))
