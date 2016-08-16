@@ -37,4 +37,5 @@ for (i in 1:length(gene_list))
 	geneInfo.unique <- rbind(geneInfo.unique, new_row) 
 }
 row.names(geneInfo.unique)= geneInfo.unique[,6]
+geneInfo.unique[,"percentage_gc_content"]=geneInfo.unique[,"percentage_gc_content"]/100.0
 write.csv(geneInfo.unique, file = "geneInfo_bimomart.csv")
