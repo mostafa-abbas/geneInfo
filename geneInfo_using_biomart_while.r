@@ -36,4 +36,5 @@ for (i in 1:length(gene_list))
 	new_row = gene_list[[i]][max_index[[i]],]
 	geneInfo.unique <- rbind(geneInfo.unique, new_row) 
 }
+row.names(geneInfo.unique)= geneInfo.unique[,6]
 write.csv(geneInfo.unique, file = "geneInfo_bimomart.csv")
